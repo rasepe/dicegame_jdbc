@@ -141,6 +141,32 @@ public class PlayerJdbcRepository implements PlayerRepository {
 	return entity;
 	
 	}
+	
+
+	public <S extends Player> S update(S entity) {
+		//Timestamp timestamp = new Timestamp(new Date().getTime());
+		//entity.setCreatedAt(timestamp);
+	jdbcTemplate.update(
+			"update players set name = ? where id = ?",
+		    entity.getName(), entity.getId()
+		);
+
+	return entity;
+	
+	}
+	
+	/*
+	 * public <S extends Player> S update(S entity) { Timestamp timestamp = new
+	 * Timestamp(new Date().getTime()); entity.setCreatedAt(timestamp);
+	 * jdbcTemplate.update(
+	 * "INSERT INTO players (created_at, has_games, name, success_rate) VALUES (?, ?, ?, ?)"
+	 * , entity.getCreatedAt(), entity.isHasGames(), entity.getName(),
+	 * entity.getSuccessRate() );
+	 * 
+	 * return entity;
+	 * 
+	 * }
+	 */
 
 //	@Override
 //	public Optional<Player> findById(Long id) {

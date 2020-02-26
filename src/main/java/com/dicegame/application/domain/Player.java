@@ -110,10 +110,7 @@ public class Player { // extends AuditModel
 		this.createdAt = createdAt;
 	}
 
-	public Optional<Player> orElseThrow(Object object) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	/*
 	 * public Optional<Player> orElseThrow(Object object) { // TODO Auto-generated

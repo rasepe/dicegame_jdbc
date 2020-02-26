@@ -207,7 +207,7 @@ public class PlayerController {
 			newPlayer, @PathVariable Long id) {
 
 		return playerRepository.findById(id) .map(player -> {
-			player.setName(newPlayer.getName()); return playerRepository.save(player); })
+			player.setName(newPlayer.getName()); return playerRepository.update(player); })    //crear una classe per actualitzar?
 				.orElseGet(() -> { newPlayer.setId(id); return
 						playerRepository.save(newPlayer); }); }
 
