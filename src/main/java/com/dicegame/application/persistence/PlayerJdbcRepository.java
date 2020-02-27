@@ -108,7 +108,10 @@ public class PlayerJdbcRepository implements PlayerRepository {
 	@Override
 	public Player getOne(Long id) {
 		// TODO Auto-generated method stub
-		return null;
+		 String sql = "SELECT * FROM players WHERE id = ?";
+
+	        return jdbcTemplate.queryForObject(sql, new Object[]{id}, new PlayerRowMapper());
+		
 	}
 
 	@Override
@@ -147,8 +150,8 @@ public class PlayerJdbcRepository implements PlayerRepository {
 		//Timestamp timestamp = new Timestamp(new Date().getTime());
 		//entity.setCreatedAt(timestamp);
 	jdbcTemplate.update(
-			"update players set name = ? where id = ?",
-		    entity.getName(), entity.getId()
+			"update players set name = ?, success_rate = ?, has_games = ? where id = ?",
+		    entity.getName(), entity.getSuccessRate(), entity.isHasGames(), entity.getId()
 		);
 
 	return entity;

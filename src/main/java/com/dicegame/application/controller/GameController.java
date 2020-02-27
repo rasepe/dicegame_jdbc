@@ -99,7 +99,7 @@ public class GameController {
 			//  };
 			//  shop.setNumPictures(shop.getNumPictures()+1);
 			player.setHasGames(true); 
-
+			playerRepository.update(player);
 			//return gameRepository.save(game);
 			gameRepository.save(game);
 			return gameRepository.findAll().get(gameRepository.findAll().size()-1);//return game;
@@ -136,7 +136,8 @@ public class GameController {
 		//POSAR RATE A NULL:
 		Player player = playerRepository.getOne(playerId);
 		player.setSuccessRate(0);
-		playerRepository.save(player);
+		player.setHasGames(false);
+		playerRepository.update(player);  //save
 	}
 
 

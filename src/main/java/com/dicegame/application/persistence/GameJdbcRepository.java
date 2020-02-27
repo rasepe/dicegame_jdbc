@@ -2,6 +2,7 @@ package com.dicegame.application.persistence;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -149,7 +150,23 @@ public class GameJdbcRepository implements GameRepository  {
 	@Override
 	public void deleteAll(Iterable<? extends Game> entities) {
 		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub
+		for(Game g: entities){
+			
+			
+			String SQL = "delete from games where id = ?";
+		      jdbcTemplate.update(SQL, g.getId());
+		    //  System.out.println("Deleted Record with ID = " + id );
+		  //    return;
+			
+		//	String sql = "DELETE FROM games WHERE id =" + g.getId();
+
+		//	List<Game> games = jdbcTemplate.query(
+	     //           sql,
+	     //           new GameRowMapper());
+		}
+			   
+	       
 	}
 
 	@Override
