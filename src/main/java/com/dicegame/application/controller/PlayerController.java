@@ -23,7 +23,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 @RestController
-@CrossOrigin(origins = "http://localhost")
+@CrossOrigin
 public class PlayerController {
 
 	@Autowired
@@ -72,7 +72,20 @@ public class PlayerController {
 	}
 
 
+	@GetMapping("/players/{playerId}/ranking")
+	public double getOnePlayerRanking(@PathVariable Long playerId) {
+		
+		
+		Player player = playerRepository.findById(playerId)
+				.orElseThrow(() -> new ResourceNotFoundException("PlayerId " + playerId + " not found"));
+	
 
+		double average = player.getSuccessRate();
+
+		return average;
+
+	}
+	
 	@GetMapping("/players/ranking/loser")
 	public ArrayList<Player> getLoserRanking() {
 		// return playerRepository.findAll(pageable);

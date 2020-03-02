@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 
 import javax.persistence.*;
@@ -26,6 +28,7 @@ public class Game {  //extends AuditModel
 	
 	//private static long COUNTER = 1;
 	
+	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -39,9 +42,10 @@ public class Game {  //extends AuditModel
     
     private boolean hasWon = false;
 
-    private Timestamp createdAt;
+    //private Timestamp createdAt;
 
-    
+   
+    private String createdAt;
     
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -57,7 +61,13 @@ public class Game {  //extends AuditModel
     	
 
     	this.player = player;
-    	this.createdAt = new Timestamp(System.currentTimeMillis());
+    	 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    		Date date = new Date();
+    	this.createdAt = dateFormat.format(date); // new Timestamp(System.currentTimeMillis());
+    	
+    	
+    	
+    	
     	
    // 	this.createdAt = LocalDateTime.now();
 //    	this.dice1 = (@NotNull int) Math.floor(Math.random()*6+1);
@@ -135,12 +145,20 @@ public class Game {  //extends AuditModel
 
 
 
-	public Timestamp getCreatedAt() {
+//	public Timestamp getCreatedAt() {
+//		return createdAt;
+//	}
+//
+//
+//	public void setCreatedAt(Timestamp createdAt) {
+//		this.createdAt = createdAt;
+//	}
+	
+	public String getCreatedAt() {
 		return createdAt;
 	}
 
-
-	public void setCreatedAt(Timestamp createdAt) {
+	public void setCreatedAt(String createdAt) {
 		this.createdAt = createdAt;
 	}
 

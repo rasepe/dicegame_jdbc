@@ -3,6 +3,8 @@ package com.dicegame.application.domain;
 
 
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Optional;
@@ -41,7 +43,11 @@ public class Player { // extends AuditModel
 
 	//private LocalDateTime createdAt;
 
-    private Timestamp createdAt;
+    //private Timestamp createdAt;
+    
+  //  private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+ //	private Date date = new Date();
+     private String createdAt;
     
 	boolean hasGames = false;
     
@@ -49,7 +55,10 @@ public class Player { // extends AuditModel
 		//this.id = COUNTER;
 		//COUNTER++;
 		this.name = name;
-		this.createdAt = new Timestamp(System.currentTimeMillis());
+		 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+ 		Date date = new Date();
+		this.createdAt = dateFormat.format(date); 
+		//this.createdAt = new Timestamp(System.currentTimeMillis());
 	}
 	
 	public Player() {}
@@ -102,11 +111,11 @@ public class Player { // extends AuditModel
 		this.hasGames = hasGames;
 	}
 
-	public Timestamp getCreatedAt() {
+	public String getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setCreatedAt(Timestamp createdAt) {
+	public void setCreatedAt(String createdAt) {
 		this.createdAt = createdAt;
 	}
 

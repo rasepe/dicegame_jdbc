@@ -26,7 +26,8 @@ public class GameRowMapper implements RowMapper<Game> {
         game.setDice1(rs.getInt("dice1"));
         game.setDice2(rs.getInt("dice2"));
         game.setHasWon(rs.getBoolean("has_won"));
-        game.setCreatedAt(rs.getTimestamp("created_at"));
+       // game.setCreatedAt(rs.getTimestamp("created_at"));
+        game.setCreatedAt(rs.getString("created_at"));
        // player.setId(rs.getLong("player_id"));
        // game.setPlayerId(rs.getLong("player_id"));
         

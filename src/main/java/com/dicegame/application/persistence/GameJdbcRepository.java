@@ -1,6 +1,8 @@
 package com.dicegame.application.persistence;
 
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -107,8 +109,11 @@ public class GameJdbcRepository implements GameRepository  {
 
 	@Override   
 	public <S extends Game> S save(S entity) {
-		Timestamp timestamp = new Timestamp(new Date().getTime());
-		entity.setCreatedAt(timestamp);
+		//Timestamp timestamp = new Timestamp(new Date().getTime());
+		//entity.setCreatedAt(timestamp);
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
+		entity.setCreatedAt(dateFormat.format(date)); //2016/11/16 12:08:43
 	jdbcTemplate.update(
 		    "INSERT INTO games (created_at, dice1, dice2, has_won, player_id) VALUES (?, ?, ?, ?, ?)",
 		    entity.getCreatedAt(), entity.getDice1(), entity.getDice2(), entity.isHasWon(), entity.getPlayer().getId()

@@ -1,6 +1,8 @@
 package com.dicegame.application.persistence;
 
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.dicegame.application.domain.Player;
 import com.dicegame.application.exception.ResourceNotFoundException;
-import com.mysql.cj.xdevapi.Result;
 
 
 
@@ -134,8 +135,11 @@ public class PlayerJdbcRepository implements PlayerRepository {
 
 	@Override
 	public <S extends Player> S save(S entity) {
-		Timestamp timestamp = new Timestamp(new Date().getTime());
-		entity.setCreatedAt(timestamp);
+		//Timestamp timestamp = new Timestamp(new Date().getTime());
+	//	entity.setCreatedAt(timestamp);
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
+		entity.setCreatedAt(dateFormat.format(date)); //2016/11/16 12:08:43
 	jdbcTemplate.update(
 		    "INSERT INTO players (created_at, has_games, name, success_rate) VALUES (?, ?, ?, ?)",
 		    entity.getCreatedAt(), entity.isHasGames(), entity.getName(), entity.getSuccessRate()
